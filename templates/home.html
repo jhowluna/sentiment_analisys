@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    <div class="text-center">
+        <h1>Análise de sentimento</h1>
+    </div>
+    <div onclick="window.location.href = 'http://127.0.0.1:8000/video_predict'" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
+                <button class="btn btn-primary" >Iniciar</button>
+    </div>
+    <div></div>
+    <div >
+    {% include 'hist.html' %}
+    </div>
+{% endblock %}

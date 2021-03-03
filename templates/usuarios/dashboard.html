@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    {% include 'partials/_busca.html' %}
+
+    {% include 'partials/_menu.html' %}
+
+    <div class="contact-area section-padding-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Olá {{ user.username }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                {% if pessoas %}
+                {% for pessoa in pessoas %}
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+
+                        <p class="text-center">{{pessoa.nome}}</p>
+                       <p class="text-center">{{pessoa.cpf}}</p>
+                            <div class="receipe-content">
+                            <a href="{% url 'pessoa' pessoa.id %}">
+                                <h6>{{ pessoa.nome_pessoa }}</h6>
+                                <a href="{% url 'visualizar' pessoa.nome %}" type="button" class="btn btn-info">Visualizar</a>
+                                <a href="{% url 'deleta_pessoa' pessoa.id %}" type="button" class="btn btn-danger">Deletar</a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}

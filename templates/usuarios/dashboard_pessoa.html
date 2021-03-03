@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    {% include 'partials/_busca.html' %}
+
+    {% include 'partials/_menu.html' %}
+
+    <h3 class="text-center">{{ pessoa_name }}</h3>
+
+    </section>
+    {% if pessoas %}
+    {% for pessoa in pessoas %}
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+
+                        <p class="text-center">{{pessoa.date_pessoa}}</p>
+                            <div class="receipe-content">
+                                <a href="{% url 'video_predict' pessoa.id %}" type="button" class="btn btn-info">gravar</a>
+                                <a href="{% url 'grafico' pessoa.id %}" type="button" class="btn btn-info">graficos</a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}

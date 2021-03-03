@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Preloader -->
+
+{% include 'partials/_busca.html' %}
+
+{% include 'partials/_menu.html' %}
+
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                 <h3 class="text-center">{{ pessoa_name }}</h3>
+                <h5 class="text-center">{{ data }}</h5>
+            </div>
+        </div>
+        {% include grafico %}
+
+{% include 'partials/_footer.html' %}
+{% endblock %}

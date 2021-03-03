@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    {% include 'partials/_busca.html' %}
+
+    {% include 'partials/_menu.html' %}
+
+    <div class="contact-area section-padding-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Olá {{ user.username }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                {% if pessoas %}
+                {% for pessoa in pessoas %}
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+
+                        <p class="text-center">{{pessoa.nome}}</p>
+                       <p class="text-center">{{pessoa.cpf}}</p>
+                            <div class="receipe-content">
+                            <a href="{% url 'pessoa' pessoa.id %}">
+                                <h6>{{ pessoa.nome_pessoa }}</h6>
+
+                                <a href="{% url 'deleta_pessoa' pessoa.id %}" type="button" class="btn btn-danger">Deletar</a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### Pagination ##### -->
+    <section class="top-catagory-area section-padding-20-0">
+        <div class="container">
+            {% if pessoas.has_other_pages %}
+            <ul class="pagination">
+                {% if pessoas.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ pessoas.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for pagina in pessoas.paginator.page_range %}
+                {% if receitas.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link">{{ pagina }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if pessoas.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ pessoas.next_page_number }}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </section>
+    <!-- ##### Pagination End ##### -->
+
+    {% include 'partials/_footer.html' %}
+{% endblock %}
